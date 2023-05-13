@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<title>元旦快乐</title>
+		<link rel="stylesheet" href="swiper/swiper-3.4.2.min.css"/>
+		<script src="swiper/swiper-3.4.2.min.js"></script>
+		<script src="js/vue.js"></script>
+		<style>
+			*{ padding: 0; margin: 0;}
+			html,body{height: 100%;}
+			#app{
+				height: 100%;
+				position: relative;
+				max-width: 450px;
+				margin: 0 auto;
+			}
+			.music{
+				z-index: 100;
+				position: absolute;
+				top: 1%;
+				left: 5%;
+				width: 9%;
+				opacity: 0.8;
+				cursor: pointer;
+			}
+			.music-anim {
+				animation: music-anim 2s linear infinite;
+			}
+			@keyframes music-anim {
+				from{transform: rotate(0);}
+				to{transform: rotate(360deg);}
+			}
+			.swiper-slide,
+			.app{
+				overflow: hidden;
+				width: 100%;
+				height: 100%;
+				position: relative;
+			}
+			.page3>img,
+			.page2>img,
+			.page1>img{ position: absolute; }
+			
+			.page3>.clock,
+			.page2>.clock,
+			.page1>.clock{
+				width: 100%;
+				top:60%;
+				left: 0;
+				opacity: 0;
+			}
+			.clock-anim{
+				animation: clock-anim 2s forwards;
+				animation-delay: 1s;
+			}
+			@keyframes clock-anim {
+				from{top: 60%;opacity: 0;}
+				to{top: 5%;opacity: 1;}
+			}
+			.page1>.yuandan{
+				width: 35%;
+				top: 20%;
+				left: -40%;
+				opacity: 0;
+			}
+			.yuandan-anim{
+				animation: yuandan-anim 2s forwards;
+				animation-delay: 1s;
+			}
+			@keyframes yuandan-anim {
+				from{left: -40%;opacity: 0;}
+				to{left: 30%;opacity: 1;}
+			}
+			.page3>.basic,
+			.page2>.basic,
+			.page1>.basic{
+				width: 110%;
+				left: -5%;
+				bottom: -30%;
+				opacity: 0;
+			}
+			.basic-anim{
+				animation: basic-anim 2s forwards;
+				animation-delay: 1s;
+			}
+			@keyframes basic-anim {
+				from{bottom: -30%;opacity: 0;}
+				to{bottom: 16%;opacity: 1;}
+			}
+			.page3>.r,
+			.page2>.r,
+			.page1>.r{
+				width: 60%;
+				top: 40%;
+				left: 20%;
+				transform: scale(0);
+				opacity: 0;
+			}
+			.r-anim{
+				animation: r-anim 2s forwards;
+				animation-delay: 1s;
+			}
+			@keyframes r-anim {
+				from{opacity: 0;transform: scale(0);}
+				to{opacity: 1;transform: scale(1.2);}
+			}
+			.page1>.new{
+				width: 80%;
+				top: 35%;
+				left: 10%;
+				transform: scale(1.3) ;
+				transform-origin: 50% 0;
+				transform: rotateY(-180deg);
+				opacity: 0;
+			}
+			.new-anim{
+				animation: new-anim 2s forwards;
+				animation-delay: 1s;
+			}
+			@keyframes new-anim {
+				from{opacity: 0;transform: rotateY(-180deg);}
+				to{opacity: 1;transform: rotateY(0deg);}
+			}
+			.page1>.text1{
+				position: absolute;
+				bottom: -10%;
+				left: 30%;
+				width: 40%;
+				font-size: 18px;
+				color: wheat;
+				text-align: center;
+				opacity: 0;
+				letter-spacing: 1px;
+			}
+			.text1-anim{
+				animation: text1-anim 2s forwards;
+				animation-delay: 1s;
+			}
+			@keyframes text1-anim {
+				from{bottom: -10%;opacity: 0;}
+				to{bottom: 11%;opacity: 1;}
+			}
+			.page1>.text2{
+				position: absolute;
+				bottom: -13%;
+				left: 25%;
+				width: 50%;
+				font-size: 18px;
+				color: wheat;
+				text-align: center;
+				opacity: 0;
+				letter-spacing: 2px;
+			}
+			.text2-anim{
+				animation: text2-anim 2s forwards;
+				animation-delay: 1s;
+			}
+			@keyframes text2-anim {
+				from{bottom: -20%;opacity: 0;}
+				to{bottom: 7%;opacity: 1;}
+			}
+			.page3>.text3,
+			.page2>.text3,
+			.page1>.text3{
+				position: absolute;
+				bottom: -13%;
+				left: 16%;
+				width: 70%;
+				font-size: 15px;
+				color: wheat;
+				text-align: center;
+				opacity: 0;
+				letter-spacing: 7px;
+			}
+			.text3-anim{
+				animation: text3-anim 2s forwards;
+				animation-delay: 1.4s;
+			}
+			@keyframes text3-anim {
+				from{bottom: -13%;opacity: 0;}
+				to{bottom: 1%;opacity: 1;}
+			}
+			.page3>.frame,
+			.page2>.frame{
+				position: absolute;
+				width: 80%;
+				top: 10%;
+				opacity: 0;
+				left: 10%;
+				text-align: center;
+				font-weight: bold;
+				background-color: white;
+				color: darkred;
+				font-size: 20px;
+				letter-spacing: 2px;
+				border-radius: 8px;
+			}
+			.frame-anim{
+				animation: frame-anim 2s forwards;
+				animation-delay: 2s;
+			}
+			@keyframes frame-anim {
+				from{opacity: 0;}
+				to{opacity: 0.9;}
+			}
+			.page2>.frame>.headp{
+				width: 30%;
+				left: 35%;
+				top: 15%;
+				opacity: 1;
+				border: 3px solid firebrick;
+				border-radius: 50%;
+				transform: scale(0);
+				opacity: 0;
+			}
+			.headp-anim{
+				animation: headp-anim 2s forwards;
+				animation-delay: 2s;
+			}
+			@keyframes headp-anim {
+				from{transform: scale(0);opacity: 0;}
+				to{transform: scale(0.9);opacity: 1;}
+			}
+			.page2>.frame>.congra{
+				position: absolute;
+				width: 70%;
+				left: 15%;
+				bottom: 5%;
+				color: darkred;
+				opacity: 1;
+				text-align: center;
+				letter-spacing: 2px;
+				line-height: 40px;
+				transform-origin: 50% 0;
+				transform: rotateY(-180deg);
+				opacity: 0;
+				font-size: initial;
+			}
+			.congra-anim{
+				animation: congra-anim 2s forwards;
+				animation-delay: 2s;
+			}
+			@keyframes congra-anim {
+				0%{opacity: 0;transform: rotateY(-180deg);}
+				25%{opacity: 0.2;transform: rotateY(0deg);}
+				50%{opacity: 0.4;transform: rotateY(30deg);}
+				75%{opacity:0.6;transform: rotateY(-30deg);}
+				100%{opacity: 1;transform: rotateY(0deg);}
+			}
+			.page3>.frame>.head{
+				position: absolute;
+				opacity: 0;
+				top: 5%;
+				left: 32%;
+			}
+			.head-anim{
+				animation: head-anim 2s forwards linear;
+				animation-delay: 1s;
+			}
+			@keyframes head-anim {
+				from{opacity: 0;top: -30%;}
+				to{opacity: 1;top: 5%;}
+			}
+			.page3>.frame>.leader{
+				position: absolute;
+				width: 85%;
+				left:7%;
+				bottom: -40%;
+				letter-spacing: 3px;
+				line-height: 30px;
+				font-size: initial;
+				opacity: 0;
+			}
+			.leader-anim{
+				animation: leader-anim 2s forwards linear;
+				animation-delay: 1s;
+			}
+			@keyframes leader-anim {
+				from{opacity: 0;bottom: -40%;}
+				to{opacity: 1;bottom: 10%;}
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<swiper name="app" direction="vertical" :indicator="true">
+				<div class="swiper-slide page1">
+					<bg src="img/beijing.webp" width="100%" height="100%"></bg>
+					
+					<img :class="page1?'clock clock-anim':'clock'"
+						src="img/clock.webp"/>
+					<img :class="page1?'r r-anim':'r'"
+						src="img/r.webp"/>
+					<img :class="page1?'yuandan yuandan-anim':'yuandan'"
+						src="img/yuandan.webp"/>
+					<img :class="page1?'basic basic-anim':'basic'"
+						src="img/basic.webp"/>
+					<img :class="page1?'new new-anim':'new'"
+						src="img/2023.webp"/>
+					<div :class="page1?'text1 text1-anim':'text1'">
+						HAPPY NEW YEAR
+					</div>
+					<div :class="page1?'text2 text2-anim':'text2'">
+						元旦快乐 · 幸福安康
+					</div>
+					<div :class="page1?'text3 text3-anim':'text3'">
+						新 | 年 | 新 | 气 | 象
+					</div>
+				</div>
+				
+				<div class="swiper-slide page2">
+					<bg src="img/beijing.webp" width="100%" height="100%"></bg>
+					<img :class="page2?'clock clock-anim':'clock'"
+						src="img/clock.webp"/>
+					<img :class="page2?'r r-anim':'r'"
+						src="img/r.webp"/>
+					<img :class="page2?'basic basic-anim':'basic'"
+						src="img/basic.webp"/>
+					<div :class="page2?'frame frame-anim':'frame'">
+						<br />
+						· 元旦祝福 ·
+						<br /><br />
+						<img :class="page2?'headp headp-anim':'headp'"
+							src="img/2..png"/>
+						<br /><br /><br />
+						<br /><br /><br />
+						<br /><br /><br />
+						<br /><br /><br />
+						<br /><br /><br />
+						<br />
+						<div :class="page2?'congra congra-anim':'congra'">
+							祝您在新的一年
+							<br />
+							笑口常开，快乐每分每秒
+							<br />
+							开心播报，时时喜上眉梢
+							<br />
+							如愿之年，事事如意顺好
+							<br />
+							万千祝福，礼到意到福到
+							<br />
+							元旦快乐！
+							<br />
+							H&L科技有限公司
+							<br />
+							2023年1月1日
+						</div>
+					</div>
+					
+					<div :class="page2?'text3 text3-anim':'text3'">
+						新 | 年 | 新 | 气 | 象
+					</div>
+				</div>
+
+				<div class="swiper-slide page3">
+					<bg src="img/beijing.webp" width="100%" height="100%"></bg>
+					<img :class="page3?'clock clock-anim':'clock'"
+						src="img/clock.webp"/>
+					<img :class="page3?'r r-anim':'r'"
+						src="img/r.webp"/>
+					<img :class="page3?'basic basic-anim':'basic'"
+						src="img/basic.webp"/>
+					<div :class="page3?'frame frame-anim':'frame'">
+						<br />
+						<div :class="page3?'head head-anim':'head'">·  领导祝福 ·</div>
+						<br /><br />
+						<img :class="page3?'headp headp-anim':'headp'" style="width: 100%;"
+							src="img/1.png"/>
+						<br /><br /><br />
+						<br /><br /><br />
+						<br /><br /><br />
+						<br /><br /><br />
+						<br /><br /><br />
+						<br />
+						<div :class="page3?'leader leader-anim':'leader'">
+							<br/><br /><br /><br />
+							<br /><br />
+							H&L科技有限公司CEO
+							<br /><br /><br />
+							一元要始，万象更新。我们告别了2022年，迎来了更加充满希望的2023年在此，我代表H&L公司全体员工项信赖我们的全国客户以及社会各界好友，致以衷心的感谢和诚挚的祝福，祝大家身体健康合家欢乐，万事如意，马到成功！
+						</div>
+					</div>
+					<div :class="page3?'text3 text3-anim':'text3'">
+						新 | 年 | 新 | 气 | 象
+					</div>
+				</div>
+				
+			</swiper>
+			<img :class="mbtn?'music music-anim':'music'"
+				@click="music()" v-if="show"
+				src="img/btn1.png"/>
+			<audio id="audio" loop src="img/newyear.mp3"></audio>
+		</div>
+		
+		<script src="js/component.js"></script>
+		<script>
+			new Vue({
+				el:'#app',
+				data:{
+					mbtn: false,
+					page1: true, 
+					page2: false, 
+					page3: false,
+					show: true,
+				},
+				mounted(){
+					bus.$on('app', i=>{
+						this.page1 = i == 0;
+						this.page2 = i == 1; 
+						this.page3 = i == 2;
+					});
+				},
+				methods:{
+					music(){
+						this.mbtn =! this.mbtn;
+						var audio = document.getElementById('audio')
+						if(this.mbtn){
+							audio.play();
+						}else {
+							audio.pause();
+						}
+					},
+				},
+			});
+		</script>
+	</body>
+</html>
